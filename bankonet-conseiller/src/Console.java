@@ -11,6 +11,13 @@ import java.util.Scanner;
 import com.bankonet.Client;
 import com.bankonet.Compte;
 import com.bankonet.CompteCourant;
+import com.bankonet.dao.DaoFactory;
+import com.bankonet.dao.DaoFactoryFile;
+import com.bankonet.dao.client.ClientDao;
+import com.bankonet.dao.compte.CompteDao;
+
+import metier.ClientService;
+import metier.ClientServiceImpl;
 
 //import com.bankonet.CompteCourant;
 
@@ -18,14 +25,19 @@ import com.bankonet.CompteCourant;
 public class Console {
 
 	Integer choix;
+	private DaoFactory daoFactory=new DaoFactoryFile();
+	private ClientService client= new ClientServiceImpl(daoFactory.getClientDao(), daoFactory.getCompteDao());
 	
 	Scanner user_input = new Scanner( System.in );
 	public Console(){
-		commencer();
+		menu();
 	}
+
 	
-	
-	public void commencer()
+	/**
+	 * Menu de selection.
+	 */
+	public void menu()
 	{
 		System.out.println("***** APPLICATION CONSEILLER BANCAIRE ******\n"
 				+ "0. Arrêter le programme\n"
@@ -39,21 +51,96 @@ public class Console {
 		case 0:
 			//TODO Ferme toutes les éventuelles connexions à la base Mongo
 			System.out.println("Arrêt de l’application");
-
 			break;
 		case 1:				
 			ouvrirCompteCourant();
-			commencer();			
+			menu();			
 			break;
 		case 2:
 			listeClient();			
-			commencer();
+			menu();
 			break;		
 		default:
-			commencer();
+			menu();
 			break;
 		}
 	}
+	
+	public void ouvrirCompteCourant(){
+		//formulaire
+		String nom;
+		String prenom;
+		String login;
+		boolean b=true;
+		while(b){						// nom
+			System.out.println("Votre nom : ");
+			nom=user_input.next();
+			b=!Confirmation(nom);
+		}
+		b=true;
+		while(b){						// prenom
+			System.out.println("Votre prenom : ");
+			prenom=user_input.next();
+			b=!Confirmation(prenom);
+		}
+		b=true;	
+		while(b){						// login
+			System.out.println("Votre login : ");
+			login=user_input.next();
+			b=!Confirmation(login);		
+		}
+		b=true;	
+		String password = login;					// MdP par défaut
+		
+		System.out.println("Le MdP par défaut est votre login, veillez à le changer");	
+		
+		try {
+			client.creerClient(nom, prenom, login, password);
+			
+			
+			
+			
+			
+			
+			
+			
+		} catch (Exception e) {
+			System.out.println("Ce client existe déja");						
+		}
+		
+		
+		
+		Map<String, String> m = new HashMap<>();
+		Map<String, String> me = new HashMap<>();
+		
+		// Ajout de client
+			
+			
+			// Ajout de compte courant
+			try {
+				Properties propCompte = new Properties();
+				FileOutputStream outputCompte = null;
+				File fileCompte = new File("compte.properties");	
+				String retour="";
+				retour+=client.getIdentifiant()+"=numero:" + 1 + "&intitulé:CC"+ client.getComptesList().size()+1 + "&solde:"+ 0;
+				outputCompte = new FileOutputStream(fileCompte,true);
+				propCompte.setProperty(client.getIdentifiant(), retour);//TODO découvert			
+				propCompte.store(outputCompte, null);										
+			} catch (IOException io) {
+				io.printStackTrace();
+			} finally {
+				if (output != null) {
+					try {
+						output.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		
+	}
+	
+	
 	
 	public void listeClient(){
 		File file2 = new File("client.properties");
@@ -100,109 +187,7 @@ public class Console {
 		}
 	}
 	
-	public void ouvrirCompteCourant(){
-		//formulaire
-		Client client=new Client();
-		boolean b=true;
-		while(b){						// nom
-			System.out.println("Votre nom : ");
-			client.setNom(user_input.next());
-			b=!Confirmation(client.getNom());
-		}
-		b=true;
-		
-		while(b){						// prenom
-			System.out.println("Votre prenom : ");
-			client.setPrenom(user_input.next());
-			b=!Confirmation(client.getPrenom());
-		}
-		b=true;
-		
-		while(b){						// login
-			System.out.println("Votre login : ");
-			client.setIdentifiant(user_input.next());
-			b=!Confirmation(client.getIdentifiant());		
-		}
-		b=true;
-		
-		String secret = client.getIdentifiant();					// MdP par défaut
-		
-		System.out.println("Le MdP par défaut est votre login, veillez à le changer");	
-		
-		// Verifie existence de client et charge les données au besoin
-		
-		boolean existe=false;
-		Map<String, String> m= new HashMap<>();
-		Map<String, String> me= new HashMap<>();
-		File file = new File("client.properties");
-		FileInputStream fileInput = null;
-		try {								
-			fileInput = new FileInputStream(file);
-			Properties propPrint = new Properties();			
-			//load a properties file from class path, inside static method
-			propPrint.load(fileInput);
-			if(propPrint.getProperty(client.getIdentifiant())!=null){				// Client déja présent
-				System.out.println("Client déja existant");		
-				existe=true;
-			}
-		} 
-		catch (IOException ex) {
-		    ex.printStackTrace();
-		}
-		finally {
-			if (fileInput != null) {
-				try {
-					fileInput.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		if(!existe){
-
-			// Ajout de client
-			
-			Properties prop = new Properties();
-			FileOutputStream output = null;
-			try {
-				output = new FileOutputStream(file,true);
-				prop.setProperty(client.getIdentifiant(), "nom:" + client.getNom() + "&prenom:" + client.getPrenom() + "&mdp:"+ secret + "&compte_courant:CC1");//TODO define cc
-				prop.store(output, null);
-			} catch (IOException io) {
-				io.printStackTrace();
-			} finally {
-				if (output != null) {
-					try {
-						output.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			// Ajout de compte courant
-			try {
-				Properties propCompte = new Properties();
-				FileOutputStream outputCompte = null;
-				File fileCompte = new File("compte.properties");	
-				String retour="";
-				retour+=client.getIdentifiant()+"=numero:" + 1 + "&intitulé:CC"+ client.getComptesList().size()+1 + "&solde:"+ 0;
-				outputCompte = new FileOutputStream(fileCompte,true);
-				propCompte.setProperty(client.getIdentifiant(), retour);//TODO découvert			
-				propCompte.store(outputCompte, null);										
-			} catch (IOException io) {
-				io.printStackTrace();
-			} finally {
-				if (output != null) {
-					try {
-						output.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-	}
+	
 		
 		
 		

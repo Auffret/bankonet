@@ -16,9 +16,31 @@ import com.bankonet.Compte;
 
 public class ClientDaoFile implements ClientDao{
 
-	public List<Compte> findAll(){
-		
+	public Map<String,Client> findAll() throws ClientException{
+		File file = new File(fileName);
+		FileInputStream fileInput = null;
+		try {
+			fileInput = new FileInputStream(file);
+			Properties prop = new Properties();
+			prop.load(fileInput);
+			for(Object o: prop.keySet()){
+				System.out.println(o);
+				
+			}
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (fileInput != null) {
+				try {
+					fileInput.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return null;
+		
 	}
 	
 	@Override

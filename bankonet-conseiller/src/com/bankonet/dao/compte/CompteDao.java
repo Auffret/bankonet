@@ -6,9 +6,12 @@ import com.bankonet.Compte;
 
 public interface CompteDao {
 
-	public List<Compte> findAll();
+	public List<Compte> findAll(String identifiant);
+	static String fileName="compte.properties";
 	
-	public void save(Compte c);
+	//public void save(Compte c);
 	
-	public void creerCompte(String identifiant, String compte);
+	public void creerCompte(String identifiant, Compte c);
+	public void creerCompte(String identifiant);
+	public boolean exist(String identifiant);
 }

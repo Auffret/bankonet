@@ -1,14 +1,53 @@
 package com.bankonet.dao.client;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.bankonet.Client;
 
-public class ClientDaoMySQL implements ClientDao{
+public class ClientDaoMySQL implements ClientDao {
+
+	static String bddName = "";
 
 	@Override
 	public void save(Client c) {
-		
+		if (!exist(c)) {
+			try {
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Connection connection;
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankonetbdd");
+				Statement statement = connection.createStatement();
+				// statement.executeUpdate("INSERT INTO client(ID,NAME,PRICE)
+				// VALUES(1,'Regina',12.0)");
+				statement.executeUpdate("INSERT INTO client VALUES(" + c.getIdentifiant() + "," + c.getNom() + ","
+						+ c.getPrenom() + "," + c.getPassword() + "," + "CC01" + "," + "");
+				statement.close();
+				connection.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		;
+
+		/*
+		 * 
+		 * // dialoguer avec bdd Statement statement =
+		 * connection.createStatement();
+		 */
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -19,8 +58,80 @@ public class ClientDaoMySQL implements ClientDao{
 
 	@Override
 	public boolean exist(Client c) {
+		boolean b = false;
+		try {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Connection connection;
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankonetbdd");
+			Statement statement = connection.createStatement();
+			ResultSet resultats = statement
+					.executeQuery("SELECT COUNT(*) FROM client WHERE login=" + c.getIdentifiant());
+			// Integer i = statement.executeQuery("SELECT COUNT(*) FROM client
+			// WHERE login="+c.getIdentifiant());
+			if (!resultats.next()) {
+				b = true;
+			}
+			/*
+			 * while(resultats.next()) {
+			 * 
+			 * Integer id = resultats.getInt("ID");
+			 * 
+			 * String name = resultats.getString("NAME"); BigDecimal price =
+			 * resultats.getBigDecimal("PRICE");
+			 * 
+			 * System.out.println("[id=" + id + " name=" + name + " price=" +
+			 * price
+			 * 
+			 * + "]"); }
+			 */
+			statement.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		// TODO Auto-generated method stub
-		return false;
+		return b;
+	}
+
+	@Override
+	public Map<String, Client> findAll() throws ClientException {
+		Map<String, Client> map = new HashMap<String, Client>();
+		try {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Connection connection;
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankonetbdd");
+			Statement statement = connection.createStatement();
+			ResultSet resultats = statement.executeQuery("SELECT * FROM client");
+			while (resultats.next()) {
+				Client c=new Client();
+				c.setIdentifiant(resultats.getString("login"));
+				c.setNom(resultats.getString("nom"));
+				c.setPrenom(resultats.getString("prenom"));
+				c.setPassword(resultats.getString("mdp"));
+				c.setC(resultats.getString("cc"));
+				c.setC(resultats.getString("ce"));
+			}
+			statement.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

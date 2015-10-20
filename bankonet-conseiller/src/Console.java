@@ -1,21 +1,9 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
 import java.util.Scanner;
 
-import com.bankonet.Client;
-import com.bankonet.Compte;
-import com.bankonet.CompteCourant;
+
 import com.bankonet.dao.DaoFactory;
-import com.bankonet.dao.DaoFactoryFile;
 import com.bankonet.dao.DaoFactoryMySQL;
-import com.bankonet.dao.client.ClientDao;
-import com.bankonet.dao.compte.CompteDao;
+
 
 import metier.ClientService;
 import metier.ClientServiceImpl;

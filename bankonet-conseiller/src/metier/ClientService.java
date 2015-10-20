@@ -2,13 +2,10 @@ package metier;
 
 import java.util.List;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 
 import com.bankonet.Client;
 import com.bankonet.Compte;
-import com.bankonet.dao.DaoFactory;
-import com.bankonet.dao.client.ClientDao;
 
 public interface ClientService {
 	

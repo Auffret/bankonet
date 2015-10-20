@@ -1,17 +1,11 @@
 package metier;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import com.bankonet.Client;
 import com.bankonet.Compte;
-import com.bankonet.dao.DaoFactory;
 import com.bankonet.dao.client.ClientDao;
 import com.bankonet.dao.client.ClientException;
 import com.bankonet.dao.compte.CompteDao;

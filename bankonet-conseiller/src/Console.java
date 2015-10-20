@@ -22,6 +22,10 @@ import metier.ClientServiceImpl;
 
 //import com.bankonet.CompteCourant;
 
+// ajouts: rollback (annuler les changements faits, avantage: ne pas avoir de client sans compte si l'ajout de compte a une erreur)
+// try ()
+// URL, USER, MDP
+
 public class Console {
 
 	Integer choix;
@@ -65,9 +69,9 @@ public class Console {
 
 	public void ouvrirCompteCourant() {
 		// formulaire
-		String nom;
-		String prenom;
-		String login;
+		String nom=null;
+		String prenom=null;
+		String login=null;
 		login=null;
 		boolean b = true;
 		while (b) { // nom

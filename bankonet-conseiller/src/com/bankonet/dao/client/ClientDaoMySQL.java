@@ -25,12 +25,11 @@ public class ClientDaoMySQL implements ClientDao {
 					e.printStackTrace();
 				}
 				Connection connection;
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankonetbdd");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankonetbdd","Auffret","mdp");
 				Statement statement = connection.createStatement();
 				// statement.executeUpdate("INSERT INTO client(ID,NAME,PRICE)
 				// VALUES(1,'Regina',12.0)");
-				statement.executeUpdate("INSERT INTO client VALUES(" + c.getIdentifiant() + "," + c.getNom() + ","
-						+ c.getPrenom() + "," + c.getPassword() + "," + "CC01" + "," + "");
+				statement.executeUpdate("INSERT INTO client VALUES(\"" + c.getIdentifiant() + "\",\"" + c.getNom() + "\",\""+ c.getPrenom() + "\",\"" + c.getPassword() + "\",\"" + "CC01" + "\",\"" + "\")");
 				statement.close();
 				connection.close();
 
@@ -67,10 +66,9 @@ public class ClientDaoMySQL implements ClientDao {
 				e.printStackTrace();
 			}
 			Connection connection;
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankonetbdd");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankonetbdd","Auffret","mdp");
 			Statement statement = connection.createStatement();
-			ResultSet resultats = statement
-					.executeQuery("SELECT COUNT(*) FROM client WHERE login=" + c.getIdentifiant());
+			ResultSet resultats = statement.executeQuery("SELECT COUNT(*) FROM client WHERE login=\"" + c.getIdentifiant()+"\"");
 			// Integer i = statement.executeQuery("SELECT COUNT(*) FROM client
 			// WHERE login="+c.getIdentifiant());
 			if (!resultats.next()) {
@@ -112,8 +110,9 @@ public class ClientDaoMySQL implements ClientDao {
 				e.printStackTrace();
 			}
 			Connection connection;
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankonetbdd");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankonetbdd","Auffret","mdp");
 			Statement statement = connection.createStatement();
+			
 			ResultSet resultats = statement.executeQuery("SELECT * FROM client");
 			while (resultats.next()) {
 				Client c=new Client();
@@ -121,12 +120,14 @@ public class ClientDaoMySQL implements ClientDao {
 				c.setNom(resultats.getString("nom"));
 				c.setPrenom(resultats.getString("prenom"));
 				c.setPassword(resultats.getString("mdp"));
-				c.setC(resultats.getString("cc"));
-				c.setC(resultats.getString("ce"));
+				map.put(resultats.getString("login"), c);
+				//c.setC(resultats.getString("cc"));//TODO
+				//c.setC(resultats.getString("ce"));
 			}
+			
 			statement.close();
 			connection.close();
-
+			return map;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -19,16 +19,17 @@ public class InitService implements ClientService{
 		super();
 		this.daoClient = daoClient;
 		this.daoCompte = daoCompte;
-		init();
+		//init();
 
 	};
 
 	public void init(){//throws CLientException
 		System.out.println("I try");
 		try {
-			creerClient("log1", "dal", "fg", "szt");
-			creerClient("log2", "theo", "dfg", "sge");
-			creerClient("log3", "elie", "dfg", "zar");
+			creerClient("nom1", "prenom1", "log1", "pass1");
+			creerClient("nom2", "prenom2", "log2", "pass2");
+			creerClient("nom3", "prenom3", "log3", "pass3");
+			creerClient("nom4", "prenom4", "log3", "pass3");// existe deja
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,7 +48,6 @@ public class InitService implements ClientService{
 
 	@Override
 	public boolean exist(Client c) throws IOException {
-		System.out.println("exist");
 		return daoClient.exist(c);
 		// TODO Auto-generated method stub
 	}
@@ -55,13 +55,9 @@ public class InitService implements ClientService{
 	@Override
 	public void creerClient(String nom, String prenom, String login, String password) throws IOException {
 		Client c=new Client(nom,prenom,login,password);
-		System.out.println("tentative de creation");
 		if(!exist(c)){
-			System.out.println("creation");
 			daoClient.save(c);
 		}
-		System.out.println("fin");
-		
 	}
 
 	@Override

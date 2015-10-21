@@ -30,11 +30,14 @@ public class ClientDaoJpa implements ClientDao{
 	
 	public Client findByLogin(String login){
 		EntityManager em= emf.createEntityManager();
-		Client c = em.createNamedQuery("client.findByLogin", Client.class)
+		List<Client> li = em.createNamedQuery("client.findByLogin", Client.class)
 				.setParameter("name", login)
-				.getSingleResult();
+				.getResultList();
 		em.close();
-		return c;
+		if(li.size()>0){
+			return li.get(0);
+		}
+		return null;
 	}
 	
 	@Override
@@ -45,10 +48,8 @@ public class ClientDaoJpa implements ClientDao{
 		List<Client> li = em.createQuery("SELECT c FROM Client c",Client.class).getResultList();//client ?
 		System.out.println("la liste contient tant d'elements:"+li.size());
 		for(Client c:li){
-			System.out.println(c);
 			map.put(c.getIdentifiant(), c);
 		}
-		
 		em.close();
 		// TODO Auto-generated method stub
 		return map;
@@ -56,7 +57,6 @@ public class ClientDaoJpa implements ClientDao{
 
 	@Override
 	public void save(Client c) {
-		System.out.println("save?");
 		EntityManager em= emf.createEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();

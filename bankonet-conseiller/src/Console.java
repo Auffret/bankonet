@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 import com.bankonet.dao.DaoFactory;
 import com.bankonet.dao.DaoFactoryMySQL;
-
+import com.bankonet.dao.client.ClientException;
 
 import metier.ClientService;
 import metier.ClientServiceImpl;
@@ -46,7 +46,12 @@ public class Console {
 			menu();
 			break;
 		case 2:
-			client.findAllClient();
+			try {
+				client.findAllClient();
+			} catch (ClientException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			menu();
 			break;
 		default:

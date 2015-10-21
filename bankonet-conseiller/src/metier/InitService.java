@@ -10,16 +10,10 @@ import com.bankonet.dao.client.ClientDao;
 import com.bankonet.dao.client.ClientException;
 import com.bankonet.dao.compte.CompteDao;
 
-public class InitService implements ClientService{
-	
-	private ClientDao daoClient;
-	private CompteDao daoCompte;
+public class InitService extends ClientService{
 	
 	public InitService(ClientDao daoClient, CompteDao daoCompte) {
-		super();
-		this.daoClient = daoClient;
-		this.daoCompte = daoCompte;
-		//init();
+		super(daoClient, daoCompte);
 
 	};
 
@@ -30,6 +24,8 @@ public class InitService implements ClientService{
 			creerClient("nom2", "prenom2", "log2", "pass2");
 			creerClient("nom3", "prenom3", "log3", "pass3");
 			creerClient("nom4", "prenom4", "log3", "pass3");// existe deja
+			creerClient("nom4", "prenom4", "log4", "pass4");
+			creerClient("nom5", "prenom5", "log5", "pass5");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +44,7 @@ public class InitService implements ClientService{
 
 	@Override
 	public boolean exist(Client c) throws IOException {
-		return daoClient.exist(c);
+		return getClientDao().exist(c);
 		// TODO Auto-generated method stub
 	}
 
@@ -56,7 +52,7 @@ public class InitService implements ClientService{
 	public void creerClient(String nom, String prenom, String login, String password) throws IOException {
 		Client c=new Client(nom,prenom,login,password);
 		if(!exist(c)){
-			daoClient.save(c);
+			getClientDao().save(c);
 		}
 	}
 
@@ -68,7 +64,7 @@ public class InitService implements ClientService{
 
 	@Override
 	public Map<String, Client> findAllClient() throws ClientException {
-		return daoClient.findAll();
+		return getClientDao().findAll();
 	}
 
 	

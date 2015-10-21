@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.bankonet.command.ChercheNomCommand;
+import com.bankonet.command.CherchePrenomCommande;
 import com.bankonet.command.ExitCommand;
 import com.bankonet.command.IHMcommand;
+import com.bankonet.command.InitialiseCommand;
 import com.bankonet.command.ListerClientsCommand;
 import com.bankonet.command.OuvrirCCCommand;
 import com.bankonet.dao.DaoFactory;
@@ -61,6 +64,9 @@ public class ConsoleCommand {
 		commands.put(0, new ExitCommand(0, client));
 		commands.put(1, new OuvrirCCCommand(1, client));
 		commands.put(2, new ListerClientsCommand(2, client));
+		commands.put(3, new InitialiseCommand(3, client));
+		commands.put(4, new ChercheNomCommand(4, client));
+		commands.put(5, new CherchePrenomCommande(5, client));
 	}
 	
 

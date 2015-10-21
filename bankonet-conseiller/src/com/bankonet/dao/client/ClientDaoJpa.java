@@ -10,7 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import com.bankonet.Client;
 
-public class ClientDaoJpa implements ClientDao{
+public class ClientDaoJpa extends ClientDao{
 
 	
 	private EntityManagerFactory emf;
@@ -19,11 +19,20 @@ public class ClientDaoJpa implements ClientDao{
 		this.emf=emf;
 	}
 
-	public Client findByFirstName(String nom){
+	public List<Client> findByFirstName(String prenom){
 		EntityManager em= emf.createEntityManager();
-		Client c = em.createNamedQuery("client.findByLastName", Client.class)
+		List<Client>  c = em.createNamedQuery("client.findByFirstName", Client.class)
+				.setParameter("name", prenom)
+				.getResultList();
+		em.close();
+		return c;
+	}
+	
+	public List<Client> findByLastName(String nom){
+		EntityManager em= emf.createEntityManager();
+		List<Client>  c = em.createNamedQuery("client.findByLastName", Client.class)
 				.setParameter("name", nom)
-				.getSingleResult();
+				.getResultList();
 		em.close();
 		return c;
 	}

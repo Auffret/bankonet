@@ -10,11 +10,10 @@ import java.util.Map;
 
 import com.bankonet.Client;
 
-public class ClientDaoMySQL implements ClientDao {
+public class ClientDaoMySQL extends ClientDao {
 
 	static String bddName = "";
 
-	@Override
 	public void save(Client c) {
 		if (!exist(c)) {
 			try {

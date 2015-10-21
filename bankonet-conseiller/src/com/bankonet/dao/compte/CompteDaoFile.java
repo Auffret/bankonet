@@ -20,7 +20,7 @@ public class CompteDaoFile implements CompteDao{
 		
 	}
 	*/
-
+	
 	@Override
 	public ArrayList<Compte> findAll(String identifiant) {
 		List<Compte> comptes=new ArrayList<Compte>();
@@ -35,8 +35,8 @@ public class CompteDaoFile implements CompteDao{
 			String[] attributs=line.split(":");	
 			for(String cc:attributs[2].split(",")){	
 				String[] attributCC=cc.split("&");
-				String numero=
-				Compte c=new Compte(attributCC[0],intitule,solde);//refaire
+				//String numero=
+				//Compte c=new Compte(attributCC[0],intitule,solde);//refaire
 				
 			
 			}

@@ -1,15 +1,24 @@
 package com.bankonet.dao.client;
 
+import java.util.List;
 import java.util.Map;
 
 import com.bankonet.Client;
+import com.bankonet.dao.compte.CompteDao;
 
-public interface ClientDao {
+public abstract class ClientDao {
 
 	static String fileName="client.properties";
 	
-	Map<String,Client> findAll() throws ClientException;
-	public void save(Client c);
-	public Client getClient(String login);
-	public boolean exist(Client c);
+	private ClientDao daoClient;
+	private CompteDao daoCompte;
+		
+	public Map<String,Client> findAll() throws ClientException{return null;};
+	public void save(Client c){};
+	public Client getClient(String login){return null;};
+	public boolean exist(Client c){return true;};
+	
+	public List<Client> findByFirstName(String prenom){return null;};
+	public List<Client> findByLastName(String nom){return null;};
+	public Client findByLogin(String login){return null;};
 }

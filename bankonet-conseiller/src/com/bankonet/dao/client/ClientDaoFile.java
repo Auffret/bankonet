@@ -14,7 +14,7 @@ import com.bankonet.Compte;
 
 
 
-public class ClientDaoFile implements ClientDao{
+public class ClientDaoFile extends ClientDao{
 
 	public Map<String,Client> findAll() throws ClientException{
 		File file = new File(fileName);

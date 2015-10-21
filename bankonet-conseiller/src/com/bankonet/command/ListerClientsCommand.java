@@ -1,5 +1,6 @@
 package com.bankonet.command;
 
+import java.util.Comparator;
 import java.util.Map;
 
 import com.bankonet.Client;
@@ -18,9 +19,14 @@ public class ListerClientsCommand extends IHMcommand {
 	public void execute() throws ClientException {
 		//System.out.println("execute");
 		//Map<String,Client> m=getClient().findAllClient();
-
+/*
 		for (Client c : getClient().findAllClient().values()) {
 			System.out.println(c.toString());
 		}
+*/
+		for (Client c : getClient().findAllClient().values()) {
+			System.out.println(c.toString());
+		}
+		
 	}
 }

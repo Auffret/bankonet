@@ -7,6 +7,7 @@ import java.util.Map;
 import com.bankonet.Client;
 import com.bankonet.Compte;
 import com.bankonet.dao.client.ClientDao;
+import com.bankonet.dao.client.ClientException;
 import com.bankonet.dao.compte.CompteDao;
 
 public class InitService implements ClientService{
@@ -18,10 +19,12 @@ public class InitService implements ClientService{
 		super();
 		this.daoClient = daoClient;
 		this.daoCompte = daoCompte;
+		init();
 
 	};
 
-	public void init(){
+	public void init(){//throws CLientException
+		System.out.println("I try");
 		try {
 			creerClient("log1", "dal", "fg", "szt");
 			creerClient("log2", "theo", "dfg", "sge");
@@ -33,36 +36,43 @@ public class InitService implements ClientService{
 		
 	}
 	
+	
+	
+	
 	@Override
 	public void creerCompte(String login) {
-		init();
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public boolean exist(Client c) throws IOException {
+		System.out.println("exist");
+		return daoClient.exist(c);
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
 	public void creerClient(String nom, String prenom, String login, String password) throws IOException {
 		Client c=new Client(nom,prenom,login,password);
-		// TODO Auto-generated method stub
-		daoClient.save(c);
+		System.out.println("tentative de creation");
+		if(!exist(c)){
+			System.out.println("creation");
+			daoClient.save(c);
+		}
+		System.out.println("fin");
+		
 	}
 
 	@Override
 	public List<Compte> findAllCompte(String login) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
-	public Map<String, Client> findAllClient() {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Client> findAllClient() throws ClientException {
+		return daoClient.findAll();
 	}
 
 	

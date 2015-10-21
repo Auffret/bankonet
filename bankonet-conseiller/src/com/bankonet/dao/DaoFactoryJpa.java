@@ -13,7 +13,7 @@ public class DaoFactoryJpa implements DaoFactory{
 	EntityManagerFactory emf;
 	
 	public DaoFactoryJpa(String s) {
-		this.emf=Persistence.createEntityManagerFactory("bankonet-tp-11");//TODO
+		this.emf=Persistence.createEntityManagerFactory(s);
 	}
 	
 	@Override

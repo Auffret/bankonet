@@ -3,6 +3,7 @@ package com.bankonet.command;
 import java.util.Map;
 
 import com.bankonet.Client;
+import com.bankonet.dao.client.ClientException;
 
 import metier.ClientService;
 
@@ -14,11 +15,12 @@ public class ListerClientsCommand extends IHMcommand {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void execute() {
-		// Map<String,Client> m=getClient().findAllClient();
+	public void execute() throws ClientException {
+		//System.out.println("execute");
+		//Map<String,Client> m=getClient().findAllClient();
+
 		for (Client c : getClient().findAllClient().values()) {
 			System.out.println(c.toString());
 		}
-
 	}
 }

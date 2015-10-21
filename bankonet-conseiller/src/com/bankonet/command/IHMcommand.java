@@ -2,6 +2,8 @@ package com.bankonet.command;
 
 import java.util.Scanner;
 
+import com.bankonet.dao.client.ClientException;
+
 import metier.ClientService;
 
 public abstract class IHMcommand {
@@ -24,7 +26,7 @@ public abstract class IHMcommand {
 		return this.libelle;
 	}
 	
-	public void execute() {
+	public void execute() throws ClientException {
 	}
 	
 	public Integer getId() {

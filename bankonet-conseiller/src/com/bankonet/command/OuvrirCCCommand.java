@@ -40,7 +40,7 @@ public class OuvrirCCCommand extends IHMcommand{
 
 		try {
 			getClient().creerClient(nom, prenom, login, password);
-			getClient().creerCompte(login);
+			//getClient().creerCompte(login);
 
 		} catch (Exception e) {
 			System.out.println("Ce client existe déja");

@@ -5,17 +5,18 @@ import java.util.Scanner;
 import com.bankonet.dao.client.ClientException;
 
 import metier.ClientService;
+import metier.CompteService;
 
 public abstract class IHMcommand {
 	
 	private String libelle;
 	private Integer id;
-	private ClientService client;
+	private CompteService client;
 	Scanner user_input = new Scanner(System.in);
 	
-	public IHMcommand(Integer id, ClientService client){
+	public IHMcommand(Integer id, CompteService client2){
 		this.id=id;
-		this.client=client;
+		this.client=client2;
 	}
 	
 	public void setLibelle(String libelle){
@@ -37,7 +38,7 @@ public abstract class IHMcommand {
 		this.id=id;
 	}
 	
-	public ClientService getClient(){
+	public CompteService getClient(){
 		return client;
 	}
 	

@@ -4,13 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.bankonet.command.ChercheNomCommand;
-import com.bankonet.command.CherchePrenomCommande;
+
 import com.bankonet.command.ExitCommand;
 import com.bankonet.command.IHMcommand;
-import com.bankonet.command.InitialiseCommand;
-import com.bankonet.command.ListerClientsCommand;
-import com.bankonet.command.OuvrirCCCommand;
+import com.bankonet.command.OuvrirCompte;
 import com.bankonet.dao.DaoFactory;
 import com.bankonet.dao.DaoFactoryJpa;
 import com.bankonet.dao.client.ClientException;
@@ -38,7 +35,7 @@ public class ConsoleCompte {
 	private DaoFactory daoFactory = new DaoFactoryJpa("bankonet-tp-11");
 
 	//private ClientService client = new ClientServiceImpl(daoFactory.getClientDao(), daoFactory.getCompteDao());
-	private CompteService client = new CompteServiceImpl(daoFactory.getClientDao(), daoFactory.getCompteDao());
+	private CompteService compte = new CompteServiceImpl(daoFactory.getClientDao(), daoFactory.getCompteDao());
 
 	// List<IHMcommand> commands = Arrays.asList(new ExitCommand(0, client), new
 	// OuvrirCCCommand(1, client),...
@@ -68,8 +65,8 @@ public class ConsoleCompte {
 
 	
 	public void CommandSet() {
-		commands.put(0, new ExitCommand(0, client));
-
+		commands.put(0, new ExitCommand(0, compte));
+		commands.put(1, new OuvrirCompte(1, compte));
 	}
 	
 

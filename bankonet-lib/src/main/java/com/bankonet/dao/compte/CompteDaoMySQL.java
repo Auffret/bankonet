@@ -2,7 +2,8 @@ package com.bankonet.dao.compte;
 
 import java.util.List;
 
-import com.bankonet.Compte;
+import classes.Compte;
+
 
 public class CompteDaoMySQL implements CompteDao{
 

@@ -8,7 +8,8 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import com.bankonet.Client;
+
+import classes.Client;
 
 public class ClientDaoJpa extends ClientDao{
 

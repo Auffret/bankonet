@@ -2,8 +2,7 @@ package com.bankonet.command;
 
 import java.util.List;
 
-import com.bankonet.Client;
-
+import classes.Client;
 import metier.ClientService;
 
 public class ChercheNomCommand extends IHMcommand{

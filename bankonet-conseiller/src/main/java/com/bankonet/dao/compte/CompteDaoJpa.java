@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import com.bankonet.Compte;
+import classes.Compte;
 
 public class CompteDaoJpa implements CompteDao{
 

@@ -36,7 +36,7 @@ public class ConsoleCommand {
 	Integer choix;
 	//private DaoFactory daoFactory = new DaoFactoryFile();
 	//private DaoFactory daoFactory = new DaoFactoryMySQL();
-	private DaoFactory daoFactory = new DaoFactoryJpa("bankonet-tp-11");
+	private DaoFactory daoFactory = new DaoFactoryJpa("bankonet-lib");
 
 	//private ClientService client = new ClientServiceImpl(daoFactory.getClientDao(), daoFactory.getCompteDao());
 	private ClientService client = new InitService(daoFactory.getClientDao(), daoFactory.getCompteDao());

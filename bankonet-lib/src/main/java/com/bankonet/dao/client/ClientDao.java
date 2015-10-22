@@ -3,8 +3,9 @@ package com.bankonet.dao.client;
 import java.util.List;
 import java.util.Map;
 
-import com.bankonet.Client;
 import com.bankonet.dao.compte.CompteDao;
+
+import classes.Client;
 
 public abstract class ClientDao {
 

@@ -7,7 +7,7 @@ maven.apache.org/xsd/maven-4.0.0.xsd">
 	<version>1.0.0</version>
 
 	<build>
-		<pluginManegement>
+		<pluginManagement>
 			<plugins>
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -17,10 +17,17 @@ maven.apache.org/xsd/maven-4.0.0.xsd">
 					</configuration>
 				</plugin>
 			</plugins>
-		</pluginManegement>
+		</pluginManagement>
 	</build>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>dta</groupId>
+			<artifactId>bankonet-lib</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	
 		<dependency>
 			<scope>runtime</scope>
 			<groupId>mysql</groupId>

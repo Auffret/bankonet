@@ -1,8 +1,7 @@
 package com.bankonet.command;
 
-import com.bankonet.Compte;
-import com.bankonet.CompteCourant;
-
+import classes.Compte;
+import classes.CompteCourant;
 import metier.ClientService;
 import metier.CompteService;
 

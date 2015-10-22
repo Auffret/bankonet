@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.bankonet.Compte;
+import classes.Compte;
 
 public class CompteDaoFile implements CompteDao{
 

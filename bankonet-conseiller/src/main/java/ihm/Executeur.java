@@ -1,4 +1,4 @@
-
+package ihm;
 public class Executeur {
 	public static void main(String[] args) {
 		

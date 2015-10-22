@@ -8,7 +8,8 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.bankonet.Client;
+import classes.Client;
+
 
 public class ClientDaoMySQL extends ClientDao {
 

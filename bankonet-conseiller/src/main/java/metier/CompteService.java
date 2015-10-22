@@ -2,9 +2,10 @@ package metier;
 
 import java.util.List;
 
-import com.bankonet.Compte;
 import com.bankonet.dao.client.ClientDao;
 import com.bankonet.dao.compte.CompteDao;
+
+import classes.Compte;
 
 public abstract class CompteService implements ServiceBase{
 

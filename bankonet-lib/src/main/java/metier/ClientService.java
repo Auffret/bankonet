@@ -4,11 +4,13 @@ import java.util.List;
 import java.io.IOException;
 import java.util.Map;
 
-import com.bankonet.Client;
-import com.bankonet.Compte;
+
 import com.bankonet.dao.client.ClientDao;
 import com.bankonet.dao.client.ClientException;
 import com.bankonet.dao.compte.CompteDao;
+
+import classes.Client;
+import classes.Compte;
 
 public abstract class ClientService implements ServiceBase{
 	

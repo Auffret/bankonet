@@ -3,9 +3,9 @@ package com.bankonet.command;
 import java.util.Comparator;
 import java.util.Map;
 
-import com.bankonet.Client;
 import com.bankonet.dao.client.ClientException;
 
+import classes.Client;
 import metier.ClientService;
 
 public class ListerClientsCommand extends IHMcommand {

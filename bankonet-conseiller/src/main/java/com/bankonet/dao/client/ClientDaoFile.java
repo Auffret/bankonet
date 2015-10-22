@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.bankonet.Client;
-import com.bankonet.Compte;
+import classes.Client;
+import classes.Compte;
 
 
 

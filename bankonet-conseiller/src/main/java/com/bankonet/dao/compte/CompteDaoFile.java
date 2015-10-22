@@ -67,7 +67,7 @@ public class CompteDaoFile implements CompteDao{
 			Properties prop = new Properties();					
 			String retour="";
 			retour+="numero:" + c.getNumero() + "&intitulé:CC"+ c.getIntitule() + "&solde:"+ c.getSolde();			
-			prop.setProperty(identifiant, retour);//TODO découvert			
+			prop.setProperty(c.getNumero(), retour);//TODO découvert			
 			prop.store(output, null);										
 		} catch (IOException io) {
 			io.printStackTrace();

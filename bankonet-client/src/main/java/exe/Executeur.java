@@ -1,4 +1,4 @@
-package main;
+package exe;
 
 public class Executeur {
 	public static void main(String[] args) {

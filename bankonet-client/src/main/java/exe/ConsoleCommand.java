@@ -1,4 +1,4 @@
-package main;
+package exe;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +13,9 @@ import com.bankonet.command.InitialiseCommand;
 import com.bankonet.command.ListerClientsCommand;
 import com.bankonet.command.OuvrirCCCommand;
 import com.bankonet.dao.DaoFactory;
+import com.bankonet.dao.DaoFactoryFile;
 import com.bankonet.dao.DaoFactoryJpa;
+import com.bankonet.dao.DaoFactoryMySQL;
 import com.bankonet.dao.client.ClientException;
 
 import metier.ClientService;
@@ -32,7 +34,7 @@ public class ConsoleCommand {
 	}
 
 	Integer choix;
-	// private DaoFactory daoFactory = new DaoFactoryFile();
+	//private DaoFactory daoFactory = new DaoFactoryFile();
 	//private DaoFactory daoFactory = new DaoFactoryMySQL();
 	private DaoFactory daoFactory = new DaoFactoryJpa("bankonet-tp-11");
 

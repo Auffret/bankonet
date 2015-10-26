@@ -4,14 +4,14 @@
 	<parent>
 		<groupId>dta</groupId>
 		<artifactId>bankonet-parent</artifactId>
-		<version>1</version>
+		<version>0.0.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>bankonet-data</artifactId>
 
 	<properties>
 		<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-		<jdbc.url>jdbc:mysql://localhost:3306:bankonetbdd</jdbc.url>
+		<jdbc.url>jdbc:mysql://localhost:3306/bankonetbdd</jdbc.url>
 		<jdbc.user>Auffret</jdbc.user>
 		<jdbc.password>mdp</jdbc.password>
 	</properties>
@@ -61,8 +61,10 @@
 						<inherited>false</inherited>
 						<configuration>
 							<autocommit>true</autocommit>
-							<srcFiles>src/main/sql/clean-db.sql</srcFiles>
-							<srcFiles>src/main/sql/init-db.sql</srcFiles>
+							<srcFiles>
+								<srcFile>src/main/sql/cleandb.sql</srcFile>
+								<srcFile>src/main/sql/initdb.sql</srcFile>
+							</srcFiles>
 						</configuration>
 					</execution>
 				</executions>

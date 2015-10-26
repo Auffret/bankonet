@@ -5,7 +5,7 @@ maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>dta</groupId>
 		<artifactId>bankonet-parent</artifactId>
-		<version>1</version>
+		<version>0.0.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>bankonet-conseiller</artifactId>

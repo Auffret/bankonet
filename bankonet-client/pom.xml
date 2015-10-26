@@ -58,7 +58,6 @@ maven.apache.org/xsd/maven-4.0.0.xsd">
 		<dependency>
 			<groupId>dta</groupId>
 			<artifactId>bankonet-lib</artifactId>
-			<version>1.0.0</version>
 		</dependency>
 
 		<dependency>

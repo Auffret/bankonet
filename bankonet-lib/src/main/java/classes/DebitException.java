@@ -1,5 +1,4 @@
 package classes;
-
 public class DebitException extends CompteException {
 
 	private static final long serialVersionUID = 1L;

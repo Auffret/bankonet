@@ -1,5 +1,4 @@
 package classes;
-
 public class CreditException extends CompteException{
 
 	public CreditException() {
